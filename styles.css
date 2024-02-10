@@ -1,34 +1,32 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
+.item {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
 }
 
-#widget-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.widget-item {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.widget-item img {
+.item-image {
     width: 100%;
     height: auto;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ff0000;
+    color: #ffffff;
+    padding: 5px 10px;
     border-radius: 5px;
 }
 
 .item-name {
-    font-size: 18px;
-    margin: 10px 0;
+    font-weight: bold;
+    margin: 10px;
 }
 
-.item-price {
-    font-weight: bold;
+.item-details {
+    margin: 10px;
+    line-height: 1.6;
 }
