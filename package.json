@@ -2,6 +2,6 @@
   "name": "fareharbor-widget",
   "version": "1.0.0",
   "dependencies": {
-    "airtable": "^0.11.1"
+    "airtable": "^0.12.2"
   }
 }
