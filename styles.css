@@ -46,6 +46,61 @@
     margin-bottom: 10px;
 }
 
+.widget-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.widget-item:hover {
+    transform: translateY(-5px);
+}
+
+.widget-item img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px; /* Add space between the image and text content */
+}
+
+.widget-item h2 {
+    margin: 10px 0;
+    color: #333;
+}
+
+.widget-item p {
+    color: #666;
+    font-size: 14px;
+}
+
+.badge {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* Example additional styling for duration and other elements */
+.duration {
+    font-weight: bold;
+}
+
+.price {
+    color: #4CAF50; /* Green color for price */
+}
+
+
+
 .card-text {
     font-size: 14px;
     margin-bottom: 10px;
