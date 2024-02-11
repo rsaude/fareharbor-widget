@@ -1,93 +1,66 @@
-/* FareHarbor Brand Styles */
+/* Import a font to match the example and update font-family */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Merriweather&display=swap');
 
-/* Importing Google Fonts */
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700|Arbutus+Slab&display=swap');
-
-/* Root Definitions for Brand Colors */
-:root {
-    --harbor-blue: #0A6ECE;
-    --midnight: #003865;
-    --cloudless: #E7F0FA;
-    --quench: #00A881;
-    --aloha: #E56A54;
-    --sand: #F3E8DE;
-}
-
-/* Body and Base Styles */
+/* General Styles */
 body {
-    font-family: 'Source Sans Pro', sans-serif;
-    background-color: var(--cloudless);
-    color: var(--midnight);
+    font-family: 'Roboto', sans-serif; 
+    background-color: #f8f8f8; 
+    color: #333; 
     margin: 0;
     padding: 20px;
 }
 
-/* Widget Items Container */
 #widget-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
-    padding: 20px;
 }
 
-/* Individual Widget Item Styles */
 .widget-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr; 
+    gap: 15px;
     background-color: #fff;
-    border: 1px solid var(--harbor-blue);
     border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0,0,0, 0.1); 
     cursor: pointer;
 }
 
-.widget-item:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+.image-container {
+    height: 200px; /* Adjust per image size */
+    overflow: hidden;
+    border-radius: 8px 8px 0 0; 
 }
 
-/* Widget Item Image Styles */
-.widget-item img {
+.image-container img {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    object-fit: cover;
 }
 
-/* Widget Item Content Styles */
-.widget-item h2 {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 700;
-    color: var(--harbor-blue);
-    padding: 10px;
-    margin: 0;
-    background-color: var(--cloudless);
-    text-align: center;
-}
-
-.widget-item .details {
+.details {
     padding: 15px;
-    font-size: 16px;
-    line-height: 1.4;
-    background-color: var(--sand);
 }
 
-.widget-item .price {
-    color: var(--quench);
+.details h2 {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    margin-bottom: 5px; 
+}
+
+.price {
     font-weight: 600;
+    color: #00a881; 
 }
 
-.widget-item .duration {
-    font-weight: 400;
-    color: var(--midnight);
-}
-
-/* Badge Style */
 .badge {
-    background-color: var(--aloha);
+    background-color: #e56a54;
     color: #fff;
-    padding: 5px 10px;
+    font-family: 'Roboto', sans-serif;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 13px;
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-family: 'Arbutus Slab', serif;
-    border-radius: 5px;
-}
+    top: 12px;
+    right: 12px;
+} 
