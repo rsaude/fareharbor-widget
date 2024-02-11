@@ -1,57 +1,48 @@
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
+document.addEventListener('DOMContentLoaded', function() {
+    fetchItems();
+});
 
-.card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: box-shadow 0.3s ease-in-out;
-}
+function fetchItems() {
+    fetch('/.netlify/functions/fetchItems')
+    .then(response => response.json())
+    .then(data => {
+        const container = document.getElementById('widget-container');
+        data.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
 
-.card:hover {
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
+            const image = document.createElement('img');
+            image.className = 'card-image';
+            image.src = item.fields.Image;
+            image.alt = item.fields.Name;
 
-.card-image {
-  width: 100%;
-  display: block;
-  height: 150px;
-  object-fit: cover;
-}
+            const content = document.createElement('div');
+            content.className = 'card-content';
 
-.card-content {
-  padding: 10px;
-  background: white;
-}
+            const title = document.createElement('h2');
+            title.className = 'card-title';
+            title.textContent = item.fields.Name;
 
-.card-title {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
+            const info = document.createElement('p');
+            info.className = 'card-info';
+            info.textContent = `${item.fields.Duration} • ${item.fields.Location}`;
 
-.card-info {
-  font-size: 14px;
-  margin-bottom: 5px;
-  color: #333;
-}
+            const rating = document.createElement('p');
+            rating.className = 'card-rating';
+            rating.textContent = `⭐ ${item.fields.Ratings} (${item.fields.Reviews} reviews)`;
 
-.card-rating {
-  color: #FFD700; /* or any color for the stars */
-}
+            const price = document.createElement('p');
+            price.className = 'card-price';
+            price.textContent = `From €${item.fields.Price} per person`;
 
-.card-price {
-  color: #E91E63; /* or any color for the price */
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-@media (max-width: 768px) {
-  .grid-container {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  }
+            content.appendChild(title);
+            content.appendChild(info);
+            content.appendChild(rating);
+            content.appendChild(price);
+            card.appendChild(image);
+            card.appendChild(content);
+            container.appendChild(card);
+        });
+    })
+    .catch(error => console.error('Error fetching data:', error));
 }
