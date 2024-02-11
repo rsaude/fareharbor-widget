@@ -1,57 +1,76 @@
+/* Grid layout for the cards */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(4, 1fr); /* 4 columns on large screens */
   gap: 20px;
   padding: 20px;
 }
 
+/* Card styling */
 .card {
-  border: 1px solid #ccc;
+  background-color: #ffffff;
   border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  transition: box-shadow 0.3s ease-in-out;
+  text-decoration: none; /* Removes the underline from links */
+  color: #333; /* Sets text color for the whole card */
+  transition: transform 0.2s ease-in-out;
 }
 
 .card:hover {
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transform: translateY(-5px); /* Lift card on hover */
 }
 
+/* Image at the top of the card */
 .card-image {
   width: 100%;
-  display: block;
-  height: 150px;
-  object-fit: cover;
+  height: 180px; /* Fixed height for all images */
+  object-fit: cover; /* Ensures the image covers the area */
 }
 
+/* Content inside the card */
 .card-content {
-  padding: 10px;
-  background: white;
+  padding: 15px;
 }
 
 .card-title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
-.card-info {
+.card-text {
   font-size: 14px;
-  margin-bottom: 5px;
-  color: #333;
+  margin-bottom: 10px;
+  color: #555;
 }
 
-.card-rating {
-  color: #FFD700; /* or any color for the stars */
+.card-rating .stars {
+  color: #FFD700; /* Star rating color */
+  margin-right: 5px;
 }
 
 .card-price {
-  color: #E91E63; /* or any color for the price */
+  font-size: 16px;
+  color: #E91E63; /* Price color */
   font-weight: bold;
-  margin-bottom: 5px;
+}
+
+/* Responsive behavior */
+@media (max-width: 1200px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
+  }
 }
 
 @media (max-width: 768px) {
   .grid-container {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 1fr; /* 1 column on extra small screens */
   }
 }
