@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchItems() {
-    fetch('/.netlify/functions/fetchItems.js')
+    fetch('/.netlify/functions/fetchItems')
     .then(response => response.json())
     .then(data => {
         const container = document.getElementById('widget-container');
