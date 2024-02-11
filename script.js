@@ -6,6 +6,7 @@ function fetchItems() {
     fetch('/.netlify/functions/fetchItems')
     .then(response => response.json())
     .then(data => {
+        console.log(data);
         const container = document.getElementById('widget-container');
         data.records.forEach(item => {
             const card = document.createElement('a');
