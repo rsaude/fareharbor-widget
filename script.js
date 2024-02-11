@@ -8,39 +8,51 @@ function fetchItems() {
     .then(data => {
         const container = document.getElementById('widget-container');
         data.forEach(item => {
-            const card = document.createElement('div');
+            const card = document.createElement('a');
             card.className = 'card';
+            card.href = item.fields['Booking Link']; // Make sure 'Booking Link' matches the field name in Airtable
+            card.target = '_blank';
+            card.style.textDecoration = 'none'; // Prevents the default underline style of links
 
             const image = document.createElement('img');
             image.className = 'card-image';
-            image.src = item.fields.Image;
+            image.src = item.fields.Image[0].url; // Adjust according to your actual field structure
             image.alt = item.fields.Name;
+            card.appendChild(image);
 
-            const content = document.createElement('div');
-            content.className = 'card-content';
-
-            const title = document.createElement('h2');
+            const title = document.createElement('h5');
             title.className = 'card-title';
             title.textContent = item.fields.Name;
+            card.appendChild(title);
 
-            const info = document.createElement('p');
-            info.className = 'card-info';
-            info.textContent = `${item.fields.Duration} • ${item.fields.Location}`;
+            const location = document.createElement('p');
+            location.className = 'card-text';
+            location.textContent = item.fields.Location;
+            card.appendChild(location);
 
-            const rating = document.createElement('p');
+            const duration = document.createElement('p');
+            duration.className = 'card-text';
+            duration.textContent = item.fields.Duration + ' • Skip the line';
+            card.appendChild(duration);
+
+            const rating = document.createElement('div');
             rating.className = 'card-rating';
-            rating.textContent = `⭐ ${item.fields.Ratings} (${item.fields.Reviews} reviews)`;
+            const stars = document.createElement('span');
+            stars.className = 'stars';
+            // Here you would generate the actual stars based on the rating number
+            stars.textContent = '★★★★☆'; // For example purposes only
+            rating.appendChild(stars);
+            const ratingNumber = document.createElement('span');
+            ratingNumber.className = 'rating-number';
+            ratingNumber.textContent = `(${item.fields.Reviews})`;
+            rating.appendChild(ratingNumber);
+            card.appendChild(rating);
 
             const price = document.createElement('p');
             price.className = 'card-price';
             price.textContent = `From €${item.fields.Price} per person`;
+            card.appendChild(price);
 
-            content.appendChild(title);
-            content.appendChild(info);
-            content.appendChild(rating);
-            content.appendChild(price);
-            card.appendChild(image);
-            card.appendChild(content);
             container.appendChild(card);
         });
     })
