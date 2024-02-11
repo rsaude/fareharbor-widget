@@ -1,50 +1,57 @@
-document.addEventListener('DOMContentLoaded', function() {
-    fetchItems();
-});
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
 
-function fetchItems() {
-    fetch('/.netlify/functions/fetchItems')
-    .then(response => response.json())
-    .then(data => {
-        const container = document.getElementById('widget-container');
-        data.forEach(item => {
-            // Create container for each item
-            const itemContainer = document.createElement('div');
-            itemContainer.className = 'item';
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease-in-out;
+}
 
-            // Add image
-            const img = document.createElement('img');
-            img.src = item.fields.Image[0].url;
-            img.className = 'item-image';
-            itemContainer.appendChild(img);
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
 
-            // Add badge
-            const badge = document.createElement('span');
-            badge.className = 'badge';
-            badge.innerText = item.fields.Badge;
-            itemContainer.appendChild(badge);
+.card-image {
+  width: 100%;
+  display: block;
+  height: 150px;
+  object-fit: cover;
+}
 
-            // Add name
-            const name = document.createElement('h2');
-            name.className = 'item-name';
-            name.innerText = item.fields.Name;
-            itemContainer.appendChild(name);
+.card-content {
+  padding: 10px;
+  background: white;
+}
 
-            // Add location, price, ratings, reviews, and duration
-            const details = document.createElement('p');
-            details.className = 'item-details';
-            details.innerHTML = `${item.fields.Location}<br>$${item.fields.Price}<br>${item.fields.Ratings} stars (${item.fields.Reviews} reviews)<br>Duration: ${item.fields.Duration}`;
-            itemContainer.appendChild(details);
+.card-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
 
-            // Click event for booking link
-            itemContainer.addEventListener('click', () => {
-                window.location.href = item.fields['Booking Link'];
-            });
-            itemContainer.style.cursor = 'pointer';
+.card-info {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333;
+}
 
-            // Append item to the container
-            container.appendChild(itemContainer);
-        });
-    })
-    .catch(error => console.error('Error fetching data:', error));
+.card-rating {
+  color: #FFD700; /* or any color for the stars */
+}
+
+.card-price {
+  color: #E91E63; /* or any color for the price */
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
 }
